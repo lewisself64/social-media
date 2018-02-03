@@ -1,6 +1,4 @@
-# Social Media
-
-## Game Development Contractor Matching Service
+# Game Development Contractor Matching Service
 
 The development of modern computer games and entertainment software is a challenging and involved process. It brings together many disparate and varied aspects of computing such as graphics, audio, user interfaces, mathematics, physics and high-performance hardware. In addition, it draws on skill sets from not only software programming but also from game design, graphical design, audio engineering, production management, project management and many other areas of expertise.
 
