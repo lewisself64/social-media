@@ -287,9 +287,23 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 
 
 
-.w3-status-update
+.work-experience-container
 {
-	margin-top: 10px;
-	width: 100%;
-	resize: none;
+	margin-top:0!important;
+}
+
+.work-experience-title
+{
+	margin-top:20px;
+}
+
+.work-experience-description
+{
+	font-size:12px;
+}
+
+.job-description
+{
+	font-size:12px;
+	color:#444;
 }
