@@ -1,3 +1,15 @@
+<?php
+	session_start();
+
+	if(!$_SESSION['logged_in_user'])
+	{
+		header('location:index.php');
+
+		return;
+	}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <title>Profile</title>
