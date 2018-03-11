@@ -4,7 +4,7 @@
 	session_start();
 
 	// Redirect user if the logged_in_user session already exists
-	if($_SESSION['logged_in_user'])
+	if(isset($_SESSION['logged_in_user']))
 	{
 		header('location:home.php');
 
