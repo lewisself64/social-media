@@ -108,17 +108,17 @@
 
 						if($user_type == 'contractor')
 						{
-							$imagename  = $_FILES['cv']['name'];
-							$imagetype  = $_FILES['cv']['type'];
-							$imagetemp  = $_FILES['cv']['tmp_name'];
-							$imagePath 	= "profiles/cv/";
-							$cv 				= null;
+							$cv_name  = $_FILES['cv']['name'];
+							$cv_type  = $_FILES['cv']['type'];
+							$cv_temp  = $_FILES['cv']['tmp_name'];
+							$cv_path 	= "profiles/cv/";
+							$cv 			= null;
 
-							if($imagetype == 'application/pdf')
+							if($cv_type == 'application/pdf')
 							{
-								if(is_uploaded_file($imagetemp)) 
+								if(is_uploaded_file($cv_temp)) 
 								{
-									if(move_uploaded_file($imagetemp, $imagePath . $imagename))
+									if(move_uploaded_file($cv_temp, $cv_path . $imagename))
 									{
 										$cv = $imagename;
 									}
@@ -145,21 +145,21 @@
 							$message = '<span id="success">Contractor created!</span>';
 						}
 						elseif($user_type == 'employer')
-						{			
+						{
 							$imagename  = $_FILES['company-logo']['name'];
-							$imagetype  = $_FILES['company-logo']['type'];
-							$imagetemp  = $_FILES['company-logo']['tmp_name'];
-							$imagePath 	= "profiles/images/";
+							$cv_type  = $_FILES['company-logo']['type'];
+							$cv_temp  = $_FILES['company-logo']['tmp_name'];
+							$cv_path 	= "profiles/images/";
 							$logo 			= null;
 
-							if(is_uploaded_file($imagetemp)) 
+							if(is_uploaded_file($cv_temp))
 							{
-								if(move_uploaded_file($imagetemp, $imagePath . $imagename))
+								if(move_uploaded_file($cv_temp, $cv_path . $imagename))
 								{
 									$logo = $imagename;
 								}
 							}
-							
+
 							$insert_employer_query = "INSERT INTO `employer` (`id`, `user_id`, `company_name`, `company_logo`) VALUES (NULL, '$insert_id', '$company_name', '$logo');";
 
 							// Run query to insert the new employer into the database

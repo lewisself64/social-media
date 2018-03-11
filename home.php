@@ -15,7 +15,7 @@
     <button class="w3-button w3-padding-large" title="Account Settings"><i class="fa fa-user w3-margin-right"></i>Settings</button>
     <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
       <a href="#" class="w3-bar-item w3-button">Edit Profile</a>
-      <a href="#" class="w3-bar-item w3-button">Log out</a>
+      <a href="logout.php" class="w3-bar-item w3-button">Log out</a>
     </div>
   </div>
  </div>
