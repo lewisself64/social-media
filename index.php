@@ -3,6 +3,14 @@
 	// Create sessions to store logged in user's id
 	session_start();
 
+	// Redirect user if the logged_in_user session already exists
+	if($_SESSION['logged_in_user'])
+	{
+		header('location:home.php');
+
+		return;
+	}
+
 	// Connects to database
 	include_once('includes/functions.php');
 
