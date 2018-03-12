@@ -1,4 +1,5 @@
 <?php
+
 	session_start();
 
 	if(!$_SESSION['logged_in_user'])
@@ -8,11 +9,29 @@
 		return;
 	}
 
+	include_once('includes/functions.php');
+
+	$logged_in_user = $_SESSION['logged_in_user'];
+
+	// If no profile_id is supplied, use the logged in users id.
+	if(isset($_GET['profile_id']))
+	{
+		$profile_id = $_GET['profile_id'];
+	}
+	else
+	{
+		$profile_id = $logged_in_user->id;
+	}
+
+	$profile_sql 	 = "SELECT * FROM users WHERE id = $profile_id";
+	$profile_query = mysqli_query($login_connect, $profile_sql);
+	$profile			 = mysqli_fetch_object($profile_query);
+
 ?>
 
 <!DOCTYPE html>
 <html>
-<title>Profile</title>
+<title><?php echo $profile->username; ?></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="assets/css/profile.css">
@@ -48,6 +67,7 @@
          <p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i> Lewis Self</p>
          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
          <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
+         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <a href="#">View CV</a></p>
         </div>
       </div>
       <br>
