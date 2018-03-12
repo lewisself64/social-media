@@ -26,6 +26,8 @@
 		// Catch anyone who disables client-side scripting or is using an old IE browser
 		if($username && $password)
 		{
+			$logged_in = 0;
+			
 			// Get the salt related to the account
 			$salt_sql = "SELECT salt
 									 FROM users
