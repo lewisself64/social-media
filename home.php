@@ -23,15 +23,27 @@
 		$profile_id = $logged_in_user->id;
 	}
 
-	$profile_sql 	 = "SELECT * FROM users WHERE id = $profile_id";
+	$user_sql   	 = "SELECT * FROM users WHERE id = $profile_id";
+	$user_query		 = mysqli_query($login_connect, $user_sql);
+	$user   			 = mysqli_fetch_object($user_query);
+
+	if($_SESSION['logged_in_user_type'] == 'contractor')
+	{
+		$profile_sql = "SELECT * FROM contractors WHERE user_id = $profile_id";
+	}
+	else
+	{
+		$profile_sql = "SELECT * FROM employer WHERE user_id = $profile_id";
+	}
+
 	$profile_query = mysqli_query($login_connect, $profile_sql);
-	$profile			 = mysqli_fetch_object($profile_query);
+	$profile 			 = mysqli_fetch_object($profile_query);
 
 ?>
 
 <!DOCTYPE html>
 <html>
-<title><?php echo $profile->username; ?></title>
+<title>Profile | <?php echo $user->username; ?></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="assets/css/profile.css">
@@ -61,13 +73,24 @@
       <!-- Profile -->
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
-         <h4 class="w3-center">My Profile</h4>
+         <h4 class="w3-center"><?php echo $user->username; ?></h4>
          <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
-         <p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i> Lewis Self</p>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
-         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
-         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <a href="#">View CV</a></p>
+				 <?php
+						if($_SESSION['logged_in_user_type'] == 'contractor') 
+						{
+							echo '<p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i> ' . $profile->first_name . ' ' . $profile->last_name . '</p>';
+							echo '<p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> ' . date("d/m/Y", strtotime($profile->date_of_birth)) . '</p>';
+							if($profile->cv)
+							{
+								echo '<p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <a href="' . $profile->cv . '">View CV</a></p>';
+							}
+						}
+						elseif($_SESSION['logged_in_user_type'] == 'employer')
+						{
+							echo '<p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i> ' . $profile->company_name . '</p>';
+						}
+			   ?>
         </div>
       </div>
       <br>
@@ -86,7 +109,7 @@
       </div>
       <br>
     </div>
-    
+
     <!-- Middle Column -->
     <div class="w3-col m7">
       
