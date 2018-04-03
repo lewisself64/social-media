@@ -27,7 +27,22 @@
 	$user_query		 = mysqli_query($login_connect, $user_sql);
 	$user   			 = mysqli_fetch_object($user_query);
 
-	if($_SESSION['logged_in_user_type'] == 'contractor')
+	/* Check what type the user is */
+
+	$user_check_sql = "SELECT * FROM employer WHERE user_id = '$profile_id';";
+
+	$user_check = mysqli_query($login_connect, $user_check_sql);
+
+	if(mysqli_num_rows($user_check) == 1)
+	{
+		$user_type = 'employer';
+	}
+	else
+	{
+		$user_type = 'contractor';
+	}
+
+	if($user_type == 'contractor')
 	{
 		$profile_sql = "SELECT * FROM contractors WHERE user_id = $profile_id";
 	}
@@ -77,7 +92,7 @@
          <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
 				 <?php
-						if($_SESSION['logged_in_user_type'] == 'contractor') 
+						if($user_type == 'contractor') 
 						{
 							echo '<p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i> ' . $profile->first_name . ' ' . $profile->last_name . '</p>';
 							echo '<p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> ' . date("d/m/Y", strtotime($profile->date_of_birth)) . '</p>';
@@ -86,7 +101,7 @@
 								echo '<p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <a href="' . $profile->cv . '">View CV</a></p>';
 							}
 						}
-						elseif($_SESSION['logged_in_user_type'] == 'employer')
+						elseif($user_type == 'employer')
 						{
 							echo '<p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i> ' . $profile->company_name . '</p>';
 						}
