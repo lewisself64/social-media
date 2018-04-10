@@ -28,7 +28,8 @@
 		$email      			= sanatize($_POST['email']);
 		$username   			= sanatize($_POST['username']);
 		$password   			= sanatize($_POST['password']);
-		$confirm_password = sanatize($_POST['password']);
+		$confirm_password = sanatize($_POST['confirm-password']);
+		$skills						= json_encode(sanatize($_POST['skills']));
 		$required 				= false;
 
 		if($user_type == 'contractor')
@@ -129,7 +130,7 @@
 								$message = 'The CV Must be a PDF.';
 							}
 
-							$insert_contractor_query = "INSERT INTO `contractors` (`id`, `user_id`, `first_name`, `last_name`, `date_of_birth`, `bio`, `cv`, `gender`) 
+							$insert_contractor_query = "INSERT INTO `contractors` (`id`, `user_id`, `first_name`, `last_name`, `date_of_birth`, `bio`, `cv`, `gender`, `skills`) 
 																					VALUES (NULL,
 																									'$insert_id',
 																									'$first_name',
@@ -137,7 +138,8 @@
 																									'$date_of_birth',
 																									'$bio',
 																									'$cv',
-																									'$gender');";
+																									'$gender',
+																									'$skills');";
 
 							// Run query to insert the new contractor into the database
 							mysqli_query($login_connect, $insert_contractor_query);
@@ -255,6 +257,10 @@
 				<p class="contractor">
 					<label>Bio: </label>
 					<textarea name="bio"></textarea>
+				</p>
+				<p class="contractor">
+					<label>Skills: <small>Seperate skills using a comma</small></label>
+					<input type="text" name="skills" />
 				</p>
 				<p class="contractor">
 					<label>CV: </label>
