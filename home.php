@@ -113,12 +113,11 @@
       <div class="w3-card w3-round w3-white w3-hide-small">
         <div class="w3-container">
           <p>Skills</p>
+					<?php $skills = explode(",", json_decode($profile->skills)); ?>
           <p>
-            <span class="w3-tag w3-small w3-theme-d5">News</span>
-            <span class="w3-tag w3-small w3-theme-d4">W3Schools</span>
-            <span class="w3-tag w3-small w3-theme-d3">Labels</span>
-            <span class="w3-tag w3-small w3-theme-d2">Games</span>
-            <span class="w3-tag w3-small w3-theme-d1">Friends</span>
+						<?php foreach($skills as $skill) : ?>
+            <span class="w3-tag w3-small w3-theme-d5"><?php echo $skill ?></span>
+						<?php endforeach; ?>
           </p>
         </div>
       </div>
