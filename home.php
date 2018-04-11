@@ -1,4 +1,5 @@
 <?php
+
 	session_start();
 
 	if(!$_SESSION['logged_in_user'])
@@ -8,11 +9,56 @@
 		return;
 	}
 
+	include_once('includes/functions.php');
+
+	$logged_in_user = $_SESSION['logged_in_user'];
+
+	// If no profile_id is supplied, use the logged in users id.
+	if(isset($_GET['profile_id']))
+	{
+		$profile_id = $_GET['profile_id'];
+	}
+	else
+	{
+		$profile_id = $logged_in_user->id;
+	}
+
+	$user_sql   	 = "SELECT * FROM users WHERE id = $profile_id";
+	$user_query		 = mysqli_query($login_connect, $user_sql);
+	$user   			 = mysqli_fetch_object($user_query);
+
+	/* Check what type the user is */
+
+	$user_check_sql = "SELECT * FROM employer WHERE user_id = '$profile_id';";
+
+	$user_check = mysqli_query($login_connect, $user_check_sql);
+
+	if(mysqli_num_rows($user_check) == 1)
+	{
+		$user_type = 'employer';
+	}
+	else
+	{
+		$user_type = 'contractor';
+	}
+
+	if($user_type == 'contractor')
+	{
+		$profile_sql = "SELECT * FROM contractors WHERE user_id = $profile_id";
+	}
+	else
+	{
+		$profile_sql = "SELECT * FROM employer WHERE user_id = $profile_id";
+	}
+
+	$profile_query = mysqli_query($login_connect, $profile_sql);
+	$profile 			 = mysqli_fetch_object($profile_query);
+
 ?>
 
 <!DOCTYPE html>
 <html>
-<title>Profile</title>
+<title>Profile | <?php echo $user->username; ?></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="assets/css/profile.css">
@@ -42,31 +88,46 @@
       <!-- Profile -->
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
-         <h4 class="w3-center">My Profile</h4>
+         <h4 class="w3-center"><?php echo $user->username; ?></h4>
          <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
-         <p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i> Lewis Self</p>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
-         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
+				 <?php
+						if($user_type == 'contractor') 
+						{
+							echo '<p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i> ' . $profile->first_name . ' ' . $profile->last_name . '</p>';
+							echo '<p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> ' . date("d/m/Y", strtotime($profile->date_of_birth)) . '</p>';
+							if($profile->cv)
+							{
+								echo '<p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <a href="' . $profile->cv . '">View CV</a></p>';
+							}
+						}
+						elseif($user_type == 'employer')
+						{
+							echo '<p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i> ' . $profile->company_name . '</p>';
+						}
+			   ?>
         </div>
       </div>
       <br>
 
-      <div class="w3-card w3-round w3-white w3-hide-small">
-        <div class="w3-container">
-          <p>Skills</p>
-          <p>
-            <span class="w3-tag w3-small w3-theme-d5">News</span>
-            <span class="w3-tag w3-small w3-theme-d4">W3Schools</span>
-            <span class="w3-tag w3-small w3-theme-d3">Labels</span>
-            <span class="w3-tag w3-small w3-theme-d2">Games</span>
-            <span class="w3-tag w3-small w3-theme-d1">Friends</span>
-          </p>
-        </div>
-      </div>
-      <br>
+			<?php if($user_type == 'contractor') : ?>
+				<?php if($profile->skills) : ?>
+				<div class="w3-card w3-round w3-white w3-hide-small">
+					<div class="w3-container">
+						<p>Skills</p>
+						<?php $skills = explode(",", json_decode($profile->skills)); ?>
+						<p>
+							<?php foreach($skills as $skill) : ?>
+							<span class="w3-tag w3-small w3-theme-d5"><?php echo $skill ?></span>
+							<?php endforeach; ?>
+						</p>
+					</div>
+				</div>
+				<br>
+				<?php endif; ?>
+			<?php endif; ?>
     </div>
-    
+
     <!-- Middle Column -->
     <div class="w3-col m7">
       

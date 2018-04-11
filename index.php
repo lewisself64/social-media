@@ -61,19 +61,6 @@
 				// Store the user object inside of the session
 				$_SESSION['logged_in_user'] = $login_object;
 
-				$contractor_sql = "SELECT * FROM employer WHERE user_id = '$login_object->id';";
-
-				$contractor_check = mysqli_query($login_connect, $contractor_sql);
-
-				if(mysqli_num_rows($contractor_check) == 1)
-				{
-					$_SESSION['logged_in_user_type'] = 'employer';
-				}
-				else
-				{
-					$_SESSION['logged_in_user_type'] = 'contractor';
-				}
-
 				// Redirect to admin page
 				header('location:home.php');
 			}
@@ -112,7 +99,9 @@
 				</p>
 				<input type="hidden" name="form_submission" value="true" />  <!-- Used in PHP to check form submission -->
 				<input type="submit" class="button" value="Submit" />
-				<a href="register.php" class="register-button">Register</a>
+				<a href="register-contractor.php" class="register-button">Register Contractor</a>
+				<span id="pipe">&nbsp;|&nbsp;</span>
+				<a href="register-employer.php" class="register-button">Register Employer</a>
 			</form>
 			<?php echo $message; ?>
 		</div>
