@@ -100,9 +100,9 @@
 						{
 							if(is_uploaded_file($cv_temp)) 
 							{
-								if(move_uploaded_file($cv_temp, $cv_path . $imagename))
+								if(move_uploaded_file($cv_temp, $cv_path . $cv_name))
 								{
-									$cv = $imagename;
+									$cv = $cv_name;
 								}
 							}
 						}
@@ -180,21 +180,25 @@
 					<label>Confirm password: <span class="required">*</span></label>
 					<input type="password" name="confirm-password" required />
 				</p>
+				<p class="contractor">
+					<label>Profile Image: </label>
+					<input type="file" name="profile-image" />
+				</p>
 				<p class="contractor required">
 					<label>First Name: <span class="required">*</span></label>
-					<input type="text" name="first-name" />
+					<input type="text" name="first-name" required />
 				</p>
 				<p class="contractor required">
 					<label>Last Name: <span class="required">*</span></label>
-					<input type="text" name="last-name" />
+					<input type="text" name="last-name" required />
 				</p>
 				<p class="contractor required">
 					<label>Date of birth: <span class="required">*</span></label>
-					<input type="date" name="date-of-birth" />
+					<input type="date" name="date-of-birth" required />
 				</p>
 				<p class="contractor required">
 					<label>Gender: <span class="required">*</span></label>
-					<select name="gender">
+					<select name="gender" required>
 						<option value="male">Male</option>
 						<option value="female">Female</option>
 					</select>
