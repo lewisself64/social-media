@@ -30,9 +30,10 @@
 		$confirm_password = sanatize($_POST['confirm-password']);
 		$required 				= false;
 
-		if(isset($_POST['company-name']))
+		if(isset($_POST['company-name']) && isset($_POST['company-description']))
 		{
-			$company_name = sanatize($_POST['company-name']);
+			$company_name 			 = sanatize($_POST['company-name']);
+			$company_description = sanatize($_POST['company-description']);
 
 			$required = true;
 		}
@@ -99,7 +100,7 @@
 							}
 						}
 
-						$insert_employer_query = "INSERT INTO `employer` (`id`, `user_id`, `company_name`, `company_logo`) VALUES (NULL, '$insert_id', '$company_name', '$logo');";
+						$insert_employer_query = "INSERT INTO `employer` (`id`, `user_id`, `company_name`, `company_logo`, `company_description`) VALUES (NULL, '$insert_id', '$company_name', '$logo', '$company_description');";
 
 						// Run query to insert the new employer into the database
 						mysqli_query($login_connect, $insert_employer_query);
@@ -163,8 +164,8 @@
 					<label>Company Name: <span class="required">*</span></label>
 					<input type="text" name="company-name" />
 				</p>
-				<p class="employer required">
-					<label>Company Description: <span class="required">*</span></label>
+				<p class="employer">
+					<label>Company Description: </label>
 					<textarea name="company-description"></textarea>
 				</p>
 				<p class="employer">
