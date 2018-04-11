@@ -137,8 +137,8 @@
         <h5>YMCA North Tyneside</h5>
         <p class="work-experience-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         <p class="work-experience-description">Donec semper neque vel hendrerit placerat. Nullam gravida odio ut lacus interdum, nec ullamcorper augue sollicitudin. Phasellus eget eleifend purus, ullamcorper cursus tortor. Aliquam eget ornare risus. Proin sed mauris sed enim lacinia semper et eu tortor. Nunc mattis aliquet venenatis. Nunc varius maximus suscipit. Aenean lobortis arcu dignissim urna efficitur vehicula et a lacus. Suspendisse dui elit, blandit vitae mollis id, volutpat at enim.</p>
-        <h5>Cell Pack Solutions</h5>
 				
+        <h5>Cell Pack Solutions</h5>
         <p class="work-experience-description">Nam venenatis massa in lectus gravida, sed dictum nibh maximus. Nunc quam enim, scelerisque eu risus blandit, suscipit iaculis nulla. Suspendisse interdum, sapien at efficitur lobortis, velit ex euismod libero, id varius quam purus vel odio. Sed in lobortis metus. Donec non eros neque. Integer id quam turpis. Quisque dignissim pharetra dapibus. Maecenas tincidunt eu nisi vitae cursus. In ultrices tempor urna, ac viverra mauris pretium eget.</p>
         <p class="work-experience-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 				<br>
@@ -146,29 +146,34 @@
       
     <!-- End Middle Column -->
     </div>
-    
-    <!-- Right Column -->
+		
     <div class="w3-col m2">
-      <div class="w3-card w3-round w3-white w3-center">
-        <div class="w3-container">
-          <h5><strong>Games Designer</strong></h5>
-          <p>Newcastle Upon Tyne</p>
-					<p class="job-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ex nisl, pellentesque ac fermentum id, porttitor eu neque. Proin iaculis venenatis orci. Cras dapibus euismod ligula nec pellentesque. </p>
-          <p>&pound;10,000
-          <p><button class="w3-button w3-block w3-theme-l4">Apply</button></p>
-        </div>
-      </div>
-      <br>
-      <div class="w3-card w3-round w3-white w3-center">
-        <div class="w3-container">
-          <h5><strong>Games Designer</strong></h5>
-          <p>Newcastle Upon Tyne</p>
-					<p class="job-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ex nisl, pellentesque ac fermentum id, porttitor eu neque. Proin iaculis venenatis orci. Cras dapibus euismod ligula nec pellentesque. </p>
-          <p>&pound;6,000</p>
-          <p><button class="w3-button w3-block w3-theme-l4">Apply</button></p>
-        </div>
-      </div>
-      <br>
+		
+		<?php
+		
+			$user_sql   = "SELECT * FROM jobs;";
+			$user_query = mysqli_query($login_connect, $user_sql);
+		
+			while($row = mysqli_fetch_array($user_query))
+			{
+				?>
+
+				<div class="w3-card w3-round w3-white w3-center">
+					<div class="w3-container">
+						<h5><strong><?php echo $row['title']; ?></strong></h5>
+						<p><?php echo $row['location']; ?></p>
+						<p class="job-description"><?php echo $row['description']; ?> </p>
+						<p>&pound;<?php echo $row['salary']; ?>
+						<p><button class="w3-button w3-block w3-theme-l4">Apply</button></p>
+					</div>
+				</div>
+				<br>
+
+				<?php
+			}
+
+		?>
+			
     <!-- End Right Column -->
     </div>
     
