@@ -99,7 +99,9 @@
 				</p>
 				<input type="hidden" name="form_submission" value="true" />  <!-- Used in PHP to check form submission -->
 				<input type="submit" class="button" value="Submit" />
-				<a href="register.php" class="register-button">Register</a>
+				<a href="register-contractor.php" class="register-button">Register Contractor</a>
+				<span id="pipe">&nbsp;|&nbsp;</span>
+				<a href="register-employer.php" class="register-button">Register Employer</a>
 			</form>
 			<?php echo $message; ?>
 		</div>
