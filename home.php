@@ -110,18 +110,22 @@
       </div>
       <br>
 
-      <div class="w3-card w3-round w3-white w3-hide-small">
-        <div class="w3-container">
-          <p>Skills</p>
-					<?php $skills = explode(",", json_decode($profile->skills)); ?>
-          <p>
-						<?php foreach($skills as $skill) : ?>
-            <span class="w3-tag w3-small w3-theme-d5"><?php echo $skill ?></span>
-						<?php endforeach; ?>
-          </p>
-        </div>
-      </div>
-      <br>
+			<?php if($user_type == 'contractor') : ?>
+				<?php if($profile->skills) : ?>
+				<div class="w3-card w3-round w3-white w3-hide-small">
+					<div class="w3-container">
+						<p>Skills</p>
+						<?php $skills = explode(",", json_decode($profile->skills)); ?>
+						<p>
+							<?php foreach($skills as $skill) : ?>
+							<span class="w3-tag w3-small w3-theme-d5"><?php echo $skill ?></span>
+							<?php endforeach; ?>
+						</p>
+					</div>
+				</div>
+				<br>
+				<?php endif; ?>
+			<?php endif; ?>
     </div>
 
     <!-- Middle Column -->
