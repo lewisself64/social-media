@@ -143,10 +143,10 @@
         <p class="work-experience-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 				<br>
       </div> 
-      
+
     <!-- End Middle Column -->
     </div>
-		
+
     <div class="w3-col m2">
 
 		<?php
@@ -164,7 +164,7 @@
 						<p><?php echo $row['location']; ?></p>
 						<p class="job-description"><?php echo $row['description']; ?> </p>
 						<p>&pound;<?php echo $row['salary']; ?></p>
-						<p><button class="w3-button w3-block w3-theme-l4">Apply</button></p>
+						<p><a href="job-application.php?job=<?php echo $row['id']; ?>&contractor=<?php echo $profile_id; ?>" class="w3-button w3-block w3-theme-l4">Apply</a></p>
 					</div>
 				</div>
 				<br>
