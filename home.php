@@ -148,9 +148,9 @@
     </div>
 		
     <div class="w3-col m2">
-		
+
 		<?php
-		
+
 			$user_sql   = "SELECT * FROM jobs;";
 			$user_query = mysqli_query($login_connect, $user_sql);
 		
@@ -163,7 +163,7 @@
 						<h5><strong><?php echo $row['title']; ?></strong></h5>
 						<p><?php echo $row['location']; ?></p>
 						<p class="job-description"><?php echo $row['description']; ?> </p>
-						<p>&pound;<?php echo $row['salary']; ?>
+						<p>&pound;<?php echo $row['salary']; ?></p>
 						<p><button class="w3-button w3-block w3-theme-l4">Apply</button></p>
 					</div>
 				</div>
