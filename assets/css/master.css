@@ -1,89 +1,76 @@
-body
-{
-	background-color:#e8e8e8;
-	font-family:tahoma;
+body {
+	background-color: #e8e8e8;
+	font-family: tahoma;
 }
 
-#form-container
-{
-	width:500px;
-	margin:40px auto 0 auto;
+#form-container {
+	width: 500px;
+	margin: 40px auto 0 auto;
 }
 
-#form-container > h2
-{
-	margin:0;
-	padding:10px 25px;
-	background-color:#132c53;
-	color:#fff;
+#form-container > h2 {
+	margin: 0;
+	padding: 10px 25px;
+	background-color: #132c53;
+	color: #fff;
 }
 
-#form-container > form
-{
-	background-color:#173566;
-	padding:10px 25px 25px 25px;
+#form-container > form {
+	background-color: #173566;
+	padding: 10px 25px 25px 25px;
 }
 
-#form-container > form > p
-{
-	margin:1.5em 0;
+#form-container > form > p {
+	margin: 1.5em 0;
 }
 
-#form-container > form > p > label
-{
-	color:#e8e8e8;
-	display:block;
-	margin:0 0 10px 0;
+#form-container > form > p > label {
+	color: #e8e8e8;
+	display: block;
+	margin: 0 0 10px 0;
 }
 
-#form-container > form > p > label > .required
-{
-	color:#a03030;
+#form-container > form > p > label > .required {
+	color: #a03030;
 }
 
-#form-container > form > p > input
-{
-	box-sizing:border-box;
+#form-container > form > p > input {
+	box-sizing: border-box;
 }
 
-.button
-{
-	cursor:pointer;
-	background-color:#173566;
-	color:#fff;
-	font-size:14px;
-	text-decoration:none;
-	border:#fff 2px solid;
-	padding:10px 20px;
-	border-radius:15px;
-	-moz-transition:background-color .2s ease-in;
-	-o-transition:background-color .2s ease-in;
-	-webkit-transition:background-color .2s ease-in;
-	transition:background-color .2s ease-in;
+.button {
+	cursor: pointer;
+	background-color: #173566;
+	color: #fff;
+	font-size: 14px;
+	text-decoration: none;
+	border: #fff 2px solid;
+	padding: 10px 20px;
+	border-radius: 15px;
+	-moz-transition: background-color .2s ease-in;
+	-o-transition: background-color .2s ease-in;
+	-webkit-transition: background-color .2s ease-in;
+	transition: background-color .2s ease-in;
 }
 
-.button:hover
-{
-	background-color:#fff;
-	color:#173566;
-	-moz-transition:background-color .2s ease-in;
-	-o-transition:background-color .2s ease-in;
-	-webkit-transition:background-color .2s ease-in;
-	transition:background-color .2s ease-in;
+.button:hover {
+	background-color: #fff;
+	color: #173566;
+	-moz-transition: background-color .2s ease-in;
+	-o-transition: background-color .2s ease-in;
+	-webkit-transition: background-color .2s ease-in;
+	transition: background-color .2s ease-in;
 }
 
 #error,
-#success
-{
-	margin:0 0 20px 0;
+#success {
+	margin: 0 0 20px 0;
 }
 
-#error
-{
-	background-color:#a30303;
+#error {
+	background-color: #a30303;
 }
 
-#success
-{
-	background-color:#008000;
+#success {
+	background-color: #008000;
 }

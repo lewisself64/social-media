@@ -1,32 +1,28 @@
 #form-container > form > p > input[type="text"],
-#form-container > form > p > input[type="password"]
-{
-	width:100%;
-	padding:10px;
-	border-radius:5px;
-	border:0;
-	font-size:18px;
+#form-container > form > p > input[type="password"] {
+	width: 100%;
+	padding: 10px;
+	border-radius: 5px;
+	border: 0;
+	font-size: 18px;
 }
 
-.register-button
-{
-	color:#fff;
-	float:right;
-	margin:7px 0 0 0;
+.register-button {
+	color: #fff;
+	float: right;
+	margin: 7px 0 0 0;
 }
 
-#pipe
-{
-	color:#fff;
-	float:right;
-	margin:7px 3px 0 3px;
+#pipe {
+	color: #fff;
+	float: right;
+	margin: 7px 3px 0 3px;
 }
 
 #error,
-#success
-{
-	line-height:50px;
-	display:block;
-	color:#fff;
-	padding:0 20px;
+#success {
+	line-height: 50px;
+	display: block;
+	color: #fff;
+	padding: 0 20px;
 }
