@@ -94,11 +94,12 @@
 				 <?php
 						if($user_type == 'contractor') 
 						{
-							echo '<p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i> ' . $profile->first_name . ' ' . $profile->last_name . '</p>';
-							echo '<p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> ' . date("d/m/Y", strtotime($profile->date_of_birth)) . '</p>';
+							echo '<p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i>' . $profile->first_name . ' ' . $profile->last_name . '</p>';
+							echo '<p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>' . date("d/m/Y", strtotime($profile->date_of_birth)) . '</p>';
+
 							if($profile->cv)
 							{
-								echo '<p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <a href="' . $profile->cv . '">View CV</a></p>';
+								echo '<p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <a href="profiles/cv/' . $profile->cv . '" target="_BLANK">View CV</a></p>';
 							}
 						}
 						elseif($user_type == 'employer')
@@ -163,7 +164,7 @@
 						<h5><strong><?php echo $row['title']; ?></strong></h5>
 						<p><?php echo $row['location']; ?></p>
 						<p class="job-description"><?php echo $row['description']; ?> </p>
-						<p>&pound;<?php echo $row['salary']; ?></p>
+						<p>&pound;<?php echo number_format($row['salary']); ?></p>
 						<p><a href="job-application.php?job=<?php echo $row['id']; ?>&contractor=<?php echo $profile_id; ?>" class="w3-button w3-block w3-theme-l4">Apply</a></p>
 					</div>
 				</div>
@@ -182,12 +183,5 @@
   
 <!-- End Page Container -->
 </div>
-<br>
-
-<!-- Footer -->
-<footer class="w3-container w3-theme-d3 w3-padding-16">
-  <h5>Footer</h5>
-</footer>
-
 </body>
 </html> 
