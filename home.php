@@ -144,6 +144,26 @@
 
 		<div class="w3-col m2">
 
+			<div class="w3-card w3-round w3-white w3-center">
+				<div class="w3-container">
+					<h5>Create job</h5>
+					<form action="job-create.php" method="POST">
+						<div class="job-inputs">
+							<label for="job-title">Title:</label>
+							<input type="text" name="job-title" id="job-title">
+							<label for="job-location">Location:</label>
+							<input type="text" name="job-location" id="job-location">
+							<label for="job-description">Description:</label>
+							<textarea name="job-description"></textarea>
+							<label for="job-salary">Salary:</label>
+							<input type="number" name="job-salary" id="job-salary">
+						</div>
+						<button type="submit" class="w3-button w3-block w3-theme-l4">Create job</button>
+					</form>
+				</div>
+			</div>
+			<br>
+
 		<?php
 
 			$user_sql   = "SELECT * FROM jobs;";
