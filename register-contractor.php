@@ -31,13 +31,13 @@
 		$skills						= json_encode(sanatize($_POST['skills']));
 		$required 				= false;
 
-		if(isset($_POST['first-name']) && isset($_POST['last-name']) && isset($_POST['date-of-birth']) && isset($_POST['bio']) && isset($_POST['gender']))
+		if(isset($_POST['first-name']) && isset($_POST['last-name']) && isset($_POST['date-of-birth']) && isset($_POST['personal-statement']) && isset($_POST['gender']))
 		{
-			$first_name	 	 = sanatize($_POST['first-name']);
-			$last_name  	 = sanatize($_POST['last-name']);
-			$date_of_birth = sanatize($_POST['date-of-birth']);
-			$bio  				 = sanatize($_POST['bio']);
-			$gender  			 = sanatize($_POST['gender']);
+			$first_name	 	 			= sanatize($_POST['first-name']);
+			$last_name  	 			= sanatize($_POST['last-name']);
+			$date_of_birth 			= sanatize($_POST['date-of-birth']);
+			$personal_statement = sanatize($_POST['personal-statement']);
+			$gender  			 			= sanatize($_POST['gender']);
 
 			$required = true;
 		}
@@ -98,7 +98,7 @@
 
 						if($cv_type == 'application/pdf')
 						{
-							if(is_uploaded_file($cv_temp)) 
+							if(is_uploaded_file($cv_temp))
 							{
 								if(move_uploaded_file($cv_temp, $cv_path . $cv_name))
 								{
@@ -111,13 +111,13 @@
 							$message = 'The CV Must be a PDF.';
 						}
 
-						$insert_contractor_query = "INSERT INTO `contractors` (`id`, `user_id`, `first_name`, `last_name`, `date_of_birth`, `bio`, `cv`, `gender`, `skills`) 
+						$insert_contractor_query = "INSERT INTO `contractors` (`id`, `user_id`, `first_name`, `last_name`, `date_of_birth`, `personal-statement`, `cv`, `gender`, `skills`)
 																				VALUES (NULL,
 																								'$insert_id',
 																								'$first_name',
 																								'$last_name',
 																								'$date_of_birth',
-																								'$bio',
+																								'$personal_statement',
 																								'$cv',
 																								'$gender',
 																								'$skills');";
@@ -204,8 +204,8 @@
 					</select>
 				</p>
 				<p class="contractor">
-					<label>Bio: </label>
-					<textarea name="bio"></textarea>
+					<label>Personal Statement: </label>
+					<textarea name="personal-statement"></textarea>
 				</p>
 				<p class="contractor">
 					<label>Skills: <small>Seperate skills using a comma</small></label>

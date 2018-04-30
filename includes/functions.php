@@ -8,10 +8,10 @@
 	if(!isLocal())
 	{
 		// Database connection details
-		$db_host = '10.169.0.154';
-		$db_user = 'hamclool_uni';
-		$db_name = 'hamclool_uni';
-		$db_pass = 'sTrad1var1ous1"';
+		$db_host = '10.169.0.169';
+		$db_user = 'lewissel_uni';
+		$db_name = 'lewissel_uni';
+		$db_pass = 'P@55w0rd321';
 	}
 	else
 	{

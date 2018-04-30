@@ -4,85 +4,76 @@
 #form-container > form > p > input[type="number"],
 #form-container > form > p > input[type="date"],
 #form-container > form > p > select,
-#form-container > form > p > textarea
-{
-	width:100%;
-	padding:10px;
-	border-radius:5px;
-	border:0;
-	font-size:18px;
+#form-container > form > p > textarea {
+	width: 100%;
+	padding: 10px;
+	border-radius: 5px;
+	border: 0;
+	font-size: 18px;
 }
 
-#form-container > form > p > textarea
-{
-	height:200px;
-	resize:none;
-	box-sizing:border-box;
+#form-container > form > p > textarea {
+	height: 400px;
+	resize: none;
+	box-sizing: border-box;
 }
 
-#form-container > form > p > input[type="file"]
-{
-	color:#fff;
+#form-container > form > p > input[type="file"] {
+	color: #fff;
 }
 
-#form-container > form > p > .user-type-label
-{
-	display:inline-block;
-	width:auto;
-	margin:0;
+#form-container > form > p > .user-type-label {
+	display: inline-block;
+	width: auto;
+	margin: 0;
 }
+
 
 /* Remove datalist arrow - https://stackoverflow.com/questions/20937475/ */
-input::-webkit-calendar-picker-indicator 
-{
-	display:none;
+
+input::-webkit-calendar-picker-indicator {
+	display: none;
 }
+
 
 /* Input placeholder font size styling - https://coolestguidesontheplanet.com/styling-placeholder-text-input-fields-forms-css/ */
-::-webkit-input-placeholder
-{
-	font-size:14px;
+
+::-webkit-input-placeholder {
+	font-size: 14px;
 }
 
-:-moz-placeholder
-{
-	font-size:14px;
+:-moz-placeholder {
+	font-size: 14px;
 }
 
-::-moz-placeholder
-{
-	font-size:14px;
-} 
-
-:-ms-input-placeholder
-{ 
-	font-size:14px; 
+::-moz-placeholder {
+	font-size: 14px;
 }
 
-#telephone-paragraph
-{
-	position:relative;
+:-ms-input-placeholder {
+	font-size: 14px;
 }
 
-.login-button
-{
-	color:#fff;
-	float:right;
-	margin:7px 0 0 0;
+#telephone-paragraph {
+	position: relative;
+}
+
+.login-button {
+	color: #fff;
+	float: right;
+	margin: 7px 0 0 0;
 }
 
 #error,
-#success
-{
-	line-height:50px;
-	display:block;
-	color:#fff;
-	padding:0 20px;
+#success {
+	line-height: 50px;
+	display: block;
+	color: #fff;
+	padding: 0 20px;
 }
 
-#success > ul
-{
-	margin:0;
-	padding:0 0 20px 20px;
-	line-height:30px;
+#success > ul {
+	margin: 0;
+	padding: 0 0 20px 20px;
+	line-height: 30px;
 }
