@@ -30,10 +30,12 @@
 		$confirm_password = sanatize($_POST['confirm-password']);
 		$required 				= false;
 
-		if(isset($_POST['company-name']) && isset($_POST['company-description']))
+		if(isset($_POST['company-name']) && isset($_POST['company-description']) && isset($_POST['company-location']) && isset($_POST['company-foundation']))
 		{
 			$company_name 			 = sanatize($_POST['company-name']);
 			$company_description = sanatize($_POST['company-description']);
+			$company_location    = sanatize($_POST['company-location']);
+			$company_foundation  = sanatize($_POST['company-foundation']);
 
 			$required = true;
 		}
@@ -86,21 +88,21 @@
 
 						$insert_id = mysqli_insert_id($login_connect);
 
-						$imagename  = $_FILES['company-logo']['name'];
-						$cv_type  = $_FILES['company-logo']['type'];
-						$cv_temp  = $_FILES['company-logo']['tmp_name'];
-						$cv_path 	= "profiles/images/";
-						$logo 			= null;
+						$logo_name = $_FILES['company-logo']['name'];
+						$logo_type = $_FILES['company-logo']['type'];
+						$logo_temp = $_FILES['company-logo']['tmp_name'];
+						$logo_path = "profiles/images/";
+						$logo 		 = null;
 
-						if(is_uploaded_file($cv_temp))
+						if(is_uploaded_file($logo_temp))
 						{
-							if(move_uploaded_file($cv_temp, $cv_path . $imagename))
+							if(move_uploaded_file($logo_temp, $logo_path . $logo_name))
 							{
-								$logo = $imagename;
+								$logo = $logo_name;
 							}
 						}
 
-						$insert_employer_query = "INSERT INTO `employer` (`id`, `user_id`, `company_name`, `company_logo`, `company_description`) VALUES (NULL, '$insert_id', '$company_name', '$logo', '$company_description');";
+						$insert_employer_query = "INSERT INTO `employer` (`id`, `user_id`, `company_name`, `company_logo`, `company_description`, `company_foundation`, `company_location`) VALUES (NULL, '$insert_id', '$company_name', '$logo', '$company_description', '$company_foundation', '$company_location');";
 
 						// Run query to insert the new employer into the database
 						mysqli_query($login_connect, $insert_employer_query);
@@ -163,6 +165,14 @@
 				<p class="employer required">
 					<label>Company Name: <span class="required">*</span></label>
 					<input type="text" name="company-name" />
+				</p>
+				<p class="employer required">
+					<label>Location: <span class="required">*</span></label>
+					<input type="text" name="company-location" />
+				</p>
+				<p class="employer required">
+					<label>Foudation Date: <span class="required">*</span></label>
+					<input type="date" name="company-foundation" />
 				</p>
 				<p class="employer">
 					<label>Company Description: </label>

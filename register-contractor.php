@@ -1,5 +1,11 @@
 <?php
 
+	ini_set('max_input_time', 300);
+	ini_set('max_execution_time', 300);
+
+	/**
+	 *	Create a function to randomly generate a string to be used as a salt to securely store the password.
+	 */
 	function generate_salt()
 	{
 		$characters       = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -39,12 +45,14 @@
 			$personal_statement = sanatize($_POST['personal-statement']);
 			$gender  			 			= sanatize($_POST['gender']);
 
+			// Confirm that all required fields have been filled in
 			$required = true;
 		}
 
 		// Check all required details are complete
 		if($email && $password && $confirm_password && $username && $required)
 		{
+			// Make sure the password and confirm password match (=== to make sure that capitals match too)
 			if($password === $confirm_password)
 			{
 				// Query to find users with the same username
@@ -90,16 +98,19 @@
 
 						$insert_id = mysqli_insert_id($login_connect);
 
+						// Get information about the CV upload
 						$cv_name  = $_FILES['cv']['name'];
 						$cv_type  = $_FILES['cv']['type'];
 						$cv_temp  = $_FILES['cv']['tmp_name'];
 						$cv_path 	= "profiles/cv/";
 						$cv 			= null;
 
+						// Check that the user has uploaded a PDF. PDF's are the only file type which can be uploaded to the website
 						if($cv_type == 'application/pdf')
 						{
 							if(is_uploaded_file($cv_temp))
 							{
+								// Move the PDF to the profiles/cv directory
 								if(move_uploaded_file($cv_temp, $cv_path . $cv_name))
 								{
 									$cv = $cv_name;
@@ -111,7 +122,7 @@
 							$message = 'The CV Must be a PDF.';
 						}
 
-						$insert_contractor_query = "INSERT INTO `contractors` (`id`, `user_id`, `first_name`, `last_name`, `date_of_birth`, `personal-statement`, `cv`, `gender`, `skills`)
+						$insert_contractor_query = "INSERT INTO `contractors` (`id`, `user_id`, `first_name`, `last_name`, `date_of_birth`, `bio`, `cv`, `gender`, `skills`)
 																				VALUES (NULL,
 																								'$insert_id',
 																								'$first_name',
@@ -179,10 +190,6 @@
 				<p>
 					<label>Confirm password: <span class="required">*</span></label>
 					<input type="password" name="confirm-password" required />
-				</p>
-				<p class="contractor">
-					<label>Profile Image: </label>
-					<input type="file" name="profile-image" />
 				</p>
 				<p class="contractor required">
 					<label>First Name: <span class="required">*</span></label>

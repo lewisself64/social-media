@@ -2025,7 +2025,8 @@ a {
 	margin: 10px 0 0 0;
 }
 
-.job-inputs input {
+.job-inputs input,
+.search-form input{
 	width: 100%;
 }
 
@@ -2034,6 +2035,41 @@ a {
 	resize: none;
 }
 
-button {
+.w3-container button {
 	margin: 10px 0;
+}
+
+#job-applications > h5,
+#job-applications > h4,
+#job-applications > form,
+#job-applications > b {
+	text-align: left;
+	display: block;
+}
+
+#job-applications > b {
+    font-size: 12px;
+}
+
+#job-applications > h5 {
+	font-size: 16px;
+}
+
+#job-applications .job-application-selection
+{
+  margin: 0 5px 0 0;
+  height: 18px;
+  vertical-align: bottom;
+}
+
+#job-applications > a {
+	font-size: 12px;
+    display: block;
+    text-align: left;
+}
+
+.application-status
+{
+	font-size:12px;
+	font-weight:bold;
 }
